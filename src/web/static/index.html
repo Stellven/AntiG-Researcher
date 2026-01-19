@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Researcher</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="icon">🤖</span>
+                <h1>Multi Agent <span class="highlight">Researcher</span></h1>
+            </div>
+            <p class="subtitle">Deep dive into any topic with Multi-Agent AI</p>
+        </header>
+
+        <main>
+            <!-- Stage 0: Initial Search -->
+            <div id="searchContainer" class="search-box">
+                <input type="text" id="topicInput"
+                    placeholder="Enter research topic (e.g., Future of Quantum Computing)..." autocomplete="off">
+                <textarea id="customPromptInput"
+                    placeholder="Optional: Enter detailed instructions for the analysis (e.g., focus on economic impact)..."
+                    class="custom-prompt-input"></textarea>
+                <button id="searchBtn">
+                    <span class="btn-text">Start Research Plan</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </div>
+
+            <!-- Global Status Bar (shows current activity) -->
+            <div id="statusContainer" class="status-container hidden">
+                <div class="status-step active">
+                    <div class="step-icon">🤖</div>
+                    <div class="step-text" id="statusText">Initializing...</div>
+                </div>
+            </div>
+
+            <!-- Agent Visualization Grid -->
+            <div id="agentGrid" class="agent-grid hidden">
+                <!-- Icons injected by JS -->
+            </div>
+
+
+            <!-- Stage 1: Plan Review -->
+            <div id="planContainer" class="wizard-container hidden">
+                <h2>📝 Review Research Plan</h2>
+                <p class="wizard-subtitle">The agents have proposed the following sub-topics. You can edit them before
+                    proceeding.</p>
+                <div id="subTopicsList"></div>
+                <button id="confirmPlanBtn">Confirm & Start Research</button>
+            </div>
+
+            <!-- Stage 2: Research Findings Review -->
+            <div id="findingsContainer" class="wizard-container hidden">
+                <h2>🔍 Review Research Findings</h2>
+                <p class="wizard-subtitle">Review and edit the findings for each sub-topic before the final report is
+                    generated.</p>
+                <div id="findingsList"></div>
+                <button id="confirmFindingsBtn">Confirm & Generate Report</button>
+            </div>
+
+            <!-- Stage 3: Final Report -->
+            <div id="resultContainer" class="result-container hidden">
+                <h2>Research Report</h2>
+                <div id="reportContent" class="markdown-body"></div>
+                <button id="downloadBtn" class="secondary-btn">Download Report</button>
+                <button id="newSearchBtn" class="secondary-btn">New Research</button>
+            </div>
+
+            <div id="errorContainer" class="error-container hidden">
+                <span class="error-icon">❌</span>
+                <span id="errorMsg">An error occurred.</span>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Gemini Pro & LangChain</p>
+        </footer>
+    </div>
+
+    <!-- Marked library for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

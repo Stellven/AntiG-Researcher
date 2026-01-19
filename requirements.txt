@@ -1,0 +1,14 @@
+langchain
+langchain-google-genai
+langchain-community
+ddgs
+python-dotenv
+fastapi
+uvicorn
+jinja2
+xhtml2pdf
+markdown
+python-docx
+wikipedia
+arxiv
+tavily-python
