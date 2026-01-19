@@ -40,15 +40,15 @@ def main():
     # CLI Mode
     topic = args.topic
     if not topic:
-        print("🤖 Welcome to the Multi-Agent Researcher!")
-        print("Tip: Run 'python main.py' to start the Web UI.")
-        topic = input("Please enter your research topic: ").strip()
+        print("🤖 欢迎使用多智能体研究员系统！")
+        print("提示：运行 'python main.py' 可启动 Web 界面。")
+        topic = input("请输入您的研究主题：").strip()
         if not topic:
-            print("❌ No topic provided. Exiting.")
+            print("❌ 未提供主题。正在退出。")
             return
 
     if not os.getenv("GOOGLE_API_KEY"):
-        print("❌ Error: GOOGLE_API_KEY not found in environment variables.")
+        print("❌ 错误：未找到 GOOGLE_API_KEY 环境变量。")
         return
 
     orchestrator = Orchestrator()
