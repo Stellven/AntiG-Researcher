@@ -1,12 +1,35 @@
-import concurrent.futures
 from src.agents.planner import PlannerAgent
 from src.agents.researcher import ResearcherAgent
 from src.agents.summarizer import SummarizerAgent
+from src.skills.search import (
+    TavilySearchSkill, 
+    SerperSearchSkill, 
+    DuckDuckGoSearchSkill, 
+    WikipediaSearchSkill, 
+    ArxivSearchSkill
+)
 
 class Orchestrator:
     def __init__(self):
         self.planner = PlannerAgent()
-        self.researcher = ResearcherAgent()
+        
+        # Configure skills
+        # This logic mimics the previous priority logic: Tavily > Serper > DDG
+        # We also include Wikipedia and Arxiv as supplementary skills
+        search_skills = []
+        import os
+        
+        if os.getenv("TAVILY_API_KEY"):
+             search_skills.append(TavilySearchSkill())
+        elif os.getenv("SERPER_API_KEY"):
+             search_skills.append(SerperSearchSkill())
+        else:
+             search_skills.append(DuckDuckGoSearchSkill())
+             
+        search_skills.append(WikipediaSearchSkill())
+        search_skills.append(ArxivSearchSkill())
+
+        self.researcher = ResearcherAgent(skills=search_skills)
         self.summarizer = SummarizerAgent()
 
     def plan_research(self, topic: str, custom_prompt: str = None):
